@@ -1,0 +1,23 @@
+{
+  "name": "two-liners-server",
+  "version": "1.0.0",
+  "description": "NodeJs Server working with MongoDB and React",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "mongodb",
+    "react",
+    "express"
+  ],
+  "author": "Aleksandar Ristevski",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.9",
+    "morgan": "^1.9.1"
+  }
+}
