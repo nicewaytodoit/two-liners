@@ -46,8 +46,11 @@ echo logpath=c:\proj\mongodb\log\mongo.log > c:\Program Files\MongoDB\Server\4.0
 2. Set the data path
 ```bash
 ./mongod.exe --dbpath=c:/proj/mongodb/data/ 
+../Program\ Files/MongoDB/Server/4.0/bin/mongod.exe --dbpath=c:/proj/mongodb/data/
 ```
 This will run server at the same time.
+pid=6668 port=27017 
+localhost:27017
 
 3. Testing client 
 Open up new command (from some reason bash is not working)
@@ -64,6 +67,10 @@ db.createCollection("dailytasks")
 show collections
 ```
 
+Or you can forget all this and just use Services like mLab that will give you DB as Service:
+https://mlab.com/ and 500MB is quite enough for small test projects like this one.
+
+
 ### Create React Start applicaiton 
 
 `create-react-app two-liners-client`
@@ -71,7 +78,9 @@ show collections
 + move conent to client folder structure 
 
 
-### Create Node/Express server servering
+### Create Node/Express server
 
-
+* Serving both 
+    - React Static 
+    - REST service end points (Adding concurently runner at bottom level)
 
