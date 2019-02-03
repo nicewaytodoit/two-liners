@@ -50,9 +50,10 @@ class AppMERN extends Component {
 
   deleteFromDB = idTodelete => {
     let objIdToDelete = null;
-    this.state.data.forEach(dat => {
-      if (dat.id === idTodelete) {
-        objIdToDelete = dat._id;
+    let idDel = parseInt(idTodelete);
+    this.state.data.forEach(item => {
+      if (item.id === idDel) {
+        objIdToDelete = item._id;
       }
     });
     axios.delete(`${msMongoUrl}deleteData`, {
@@ -64,12 +65,14 @@ class AppMERN extends Component {
 
   updateDB = (idToUpdate, updateToApply) => {
     let objIdToUpdate = null;
+    let idUpd = parseInt(idToUpdate);
     this.state.data.forEach(dat => {
-      if (dat.id === idToUpdate) {
+      console.log(dat.id, idUpd, dat.id === idUpd);
+      if (dat.id === idUpd) {
         objIdToUpdate = dat._id;
       }
     });
-
+    console.log(objIdToUpdate);
     axios.post(`${msMongoUrl}updateData`, {
       id: objIdToUpdate,
       update: { message: updateToApply }

@@ -11,4 +11,4 @@ const DataSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("Data", DataSchema);
+module.exports = mongoose.model("Message", DataSchema);

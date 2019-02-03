@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-const Data = require("./data");
+const MessageNode = require("./schemas/messageSchema");
 
 const port = 3001;
 const app = express();
@@ -10,7 +10,7 @@ const router = express.Router();
 
 
 // Init MongoDB
-const dbRoute = "mongodb://localhost:27017/messagetest";
+const dbRoute = "mongodb://localhost:27017/twoliners";
 mongoose.connect(dbRoute, { useNewUrlParser: true });
 let db = mongoose.connection;
 db.once("open", () => console.log("MongoDB connection is ON"));
@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
 
 // READ
 router.get("/getData", (req, res) => {
-  Data.find((err, data) => {
+  MessageNode.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
@@ -42,7 +42,8 @@ router.get("/getData", (req, res) => {
 // UPDATE
 router.post("/updateData", (req, res) => {
   const { id, update } = req.body;
-  Data.findOneAndUpdate(id, update, err => {
+  console.log('>>>>>>>>>>>>', id, update);
+  MessageNode.findOneAndUpdate({ _id: id }, update, err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
@@ -51,7 +52,7 @@ router.post("/updateData", (req, res) => {
 // DELETE
 router.delete("/deleteData", (req, res) => {
   const { id } = req.body;
-  Data.findOneAndDelete(id, err => {
+  MessageNode.findOneAndDelete({ _id: id }, err => {
     if (err) return res.send(err);
     return res.json({ success: true });
   });
@@ -59,7 +60,7 @@ router.delete("/deleteData", (req, res) => {
 
 // CREATE
 router.post("/putData", (req, res) => {
-  let data = new Data();
+  let data = new MessageNode();
 
   const { id, message } = req.body;
 
@@ -80,3 +81,16 @@ router.post("/putData", (req, res) => {
 app.use("/api", router);
 
 app.listen(port, () => console.log(`LISTENING ON PORT ${port}`));
+
+
+
+function test () {
+  const id = '5c56b5a893de035fd06a7dd9';
+  const update = { message: 'I bet it is great' }
+  MessageNode.findOneAndUpdate({ _id: id }, update, err => {
+    if (err) return JSON.stringify({ success: false, error: err });
+    return JSON.stringify({ success: true });
+  });
+}
+
+// test();
