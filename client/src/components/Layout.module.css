@@ -1,0 +1,39 @@
+.Layout {
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+  }
+  .Layout input, .Layout label {
+    display: block;
+    width: 80%;
+  }
+  .Layout div > select {
+      display: inline-block;
+      width: 25%;
+      margin-right: 10px;
+  } 
+  
+  .Layout div > select + input {
+    width: 60%;
+    display: inline-block;
+  }
+
+  .Layout label {
+    padding: 5px 10px 15px 10px;;
+    width: 80%;
+  }
+
+  h2 {
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+  }
+
+  h2 + label {
+      color: #888;
+  }
+
+  input, select {
+      line-height: 1.3em;
+      font-size: 1.2em;
+  } 
