@@ -6,11 +6,11 @@ import './assets/index.css';
 // import GenApp from './Generated/GenApp';
 // const root = <GenApp />;
 
-import AppMERN from './MERN/AppMERN';
-const root = <AppMERN />;
+// import AppMERN from './MERN/AppMERN';
+// const root = <AppMERN />;
 
-// import Layout from './components/Layout';
-// const root = <Layout />;
+import Layout from './components/Layout';
+const root = <Layout />;
 
 ReactDOM.render(root, document.getElementById('root'));
 

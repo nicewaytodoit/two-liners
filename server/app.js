@@ -4,6 +4,12 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const MessageNode = require("./schemas/messageSchema");
 
+
+const twoLiners = require("./schemas/twoLinerSchema");
+const TwoLinerNode = twoLiners.TwoLiner;
+const DailyMessageNode = twoLiners.DailyMessage;
+
+
 const port = 3001;
 const app = express();
 const router = express.Router();
@@ -42,7 +48,6 @@ router.get("/getData", (req, res) => {
 // UPDATE
 router.post("/updateData", (req, res) => {
   const { id, update } = req.body;
-  console.log('>>>>>>>>>>>>', id, update);
   MessageNode.findOneAndUpdate({ _id: id }, update, err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -82,15 +87,3 @@ app.use("/api", router);
 
 app.listen(port, () => console.log(`LISTENING ON PORT ${port}`));
 
-
-
-function test () {
-  const id = '5c56b5a893de035fd06a7dd9';
-  const update = { message: 'I bet it is great' }
-  MessageNode.findOneAndUpdate({ _id: id }, update, err => {
-    if (err) return JSON.stringify({ success: false, error: err });
-    return JSON.stringify({ success: true });
-  });
-}
-
-// test();
