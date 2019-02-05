@@ -30,7 +30,7 @@ const TwoLinerSchema = new Schema(
     messages: [DailyTaskSchema]
   },  
   { 
-    timestamps: true,
+    timestamps: true,git 
   }
 );
 
