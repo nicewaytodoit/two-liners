@@ -3,22 +3,22 @@ const Schema = mongoose.Schema;
 
 const DailyTaskSchema = new Schema(
   {
-    author: {
-      type: String,
-      index: true,
-      unique: true,
-    }, // ID
+    author: String,
+    date: String,
     address: String,
     yesterday: String,
     tomorrow: String,
-    actionType: ['action','comment','issue'],
+    // actionType: ['action','comment','issue'],
+    actionType: { type: String, enum:['action','comment','issue'].concat([null]) },
     actions: String,
   },  
   { 
-    _id: false,
+    _id: true,
     timestamps: true,
   }
 );
+
+DailyTaskSchema.index({ author: 1, date: 1 }, { unique: true });
 
 const TwoLinerSchema = new Schema(
   {
@@ -30,7 +30,7 @@ const TwoLinerSchema = new Schema(
     messages: [DailyTaskSchema]
   },  
   { 
-    timestamps: true,git 
+    timestamps: true,
   }
 );
 
@@ -61,4 +61,3 @@ module.exports = {
 //     }
 //   ]
 // }
-

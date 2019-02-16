@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const chalk = require('chalk');
 const MessageNode = require("./schemas/messageSchema");
 
 const twoLiners = require("./schemas/twoLinerSchema");
 const TwoLinerNode = twoLiners.TwoLiner;
-const DailyMessageNode = twoLiners.DailyMessage;
+const DailyTaskNode = twoLiners.DailyTask;
 
 const dbRoute = "mongodb://localhost:27017/twoliners";
 mongoose.connect(dbRoute, { useNewUrlParser: true });
@@ -91,6 +92,68 @@ function findOne() {
     });
 }
 
+// https://stackoverflow.com/questions/15921700/mongoose-unique-values-in-nested-array-of-objects
+
+// var groupSchema = Schema({
+//     name : { type : String },
+//     org : { type : Schema.Types.ObjectId, ref : 'Organization' },
+//     ...
+//     users : [{
+//       uid : { type : Schema.Types.ObjectId, ref : 'User' },
+//       ...
+//     }]
+//   });
+
+//   Use the $addToSet operator to add a value to an array only if the value is not already present.
+
+//   Group.update({name: 'admin'}, {$addToSet: {users: userOid}}, ...
+  
+//   However, if the users array contains objects with multiple properties and you want to ensure uniqueness over just one of them (uid in this case), then you need to take another approach:
+  
+//   var user = { uid: userOid, ... };
+//   Group.update(
+//       {name: 'admin', 'users.uid': {$ne: user.uid}}, 
+//       {$push: {users: user}},
+//       function(err, numAffected) { ... });
+
+
+function findOrCreateMe() {
+    return new Promise((resolve, reject) => {
+        DailyTaskNode.create({ 
+            author: 'Foo1',
+            date: '2011-01-06',
+            address: '121.12.122.11',
+            yesterday: 'Whatever 1',
+            tomorrow: 'Whatever 1',
+            // actionType: 'test', // should fail because of this
+            actionType: null, // should fail because of this
+            actions: 'Don\'t take any actions',
+        } , (err, obj) => {
+            if (err) {
+                reject(JSON.stringify(err));
+            };
+            // saved!
+            resolve(JSON.stringify(obj, null, 2));
+        })
+    });
+}
+
 // findOrCreateTwo()
-findOrCreate2();
+// findOrCreate2();
 // findOne();
+
+// actionType does not work 
+// * how to limit values in mongoose schema 
+
+findOrCreateMe().then((res) => {
+    console.log('----------');
+    console.log('Data:', res);
+})
+.catch(err => {
+    console.log('----------');
+    console.log('Error', chalk.red(err));
+})
+.finally(() => {
+    console.log( ' ----------- Exit ------------ ' );
+    process.exit();
+});
