@@ -3,8 +3,11 @@ const chalk = require('chalk');
 const MessageNode = require("./schemas/messageSchema");
 
 const twoLiners = require("./schemas/twoLinerSchema");
+// const twoLiners = {};
 const TwoLinerNode = twoLiners.TwoLiner;
 const DailyTaskNode = twoLiners.DailyTask;
+
+// console.log('@@@@', JSON.stringify(Schema));
 
 const dbRoute = "mongodb://localhost:27017/twoliners";
 mongoose.connect(dbRoute, { useNewUrlParser: true });
@@ -120,8 +123,8 @@ function findOne() {
 function findOrCreateMe() {
     return new Promise((resolve, reject) => {
         DailyTaskNode.create({ 
-            author: 'Foo1',
-            date: '2011-01-06',
+            author: 'Foo5',
+            date: '2011-01-10',
             address: '121.12.122.11',
             yesterday: 'Whatever 1',
             tomorrow: 'Whatever 1',

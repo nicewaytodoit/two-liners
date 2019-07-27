@@ -131,3 +131,50 @@ Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remot
 Access to XMLHttpRequest at 'http://localhost:3001/api/deleteData' from origin 'http://localhost:3000' has been blocked by CORS policy: Method DELETE is not allowed by Access-Control-Allow-Methods in preflight response.
 
 * Solution > #Fix-002
+
+# What am I trying to achieve 
+```json
+{
+    "date": "2019-03-19",
+    "liners": [
+        {
+            "user": "Aleks", // hashed userID if recognised update
+            "IP": "ip",
+            "date": "2019-03-19",
+            "yestarday": "Developing Countries 2017",
+            "today": "Developing Titles 2015",
+            "comment": {
+                "type": "comment",
+                "text": "Developint Titles 2015",
+            },
+            "createdAt": "dd-MM-yyyy hh-mm-ss",
+            "updatedAt": "dd-MM-yyyy hh-mm-ss",
+        },
+        {
+            "user": "Barbara",
+            "date": "2019-03-19", // visual only 
+            "yestarday": "Developing Countries 2017",
+            "today": "Developing Titles 2015",
+            "comment": {
+                "type": "comment",
+                "text": "Developint Titles 2015",
+            },
+            "createdAt": "dd-MM-yyyy hh-mm-ss",
+            "updatedAt": "dd-MM-yyyy hh-mm-ss",
+        }
+    ]
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
