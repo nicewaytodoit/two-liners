@@ -16,6 +16,6 @@
   "license": "GPL-3.0",
   "dependencies": {
     "concurrently": "^4.1.1",
-    "lodash": ">=4.17.13"
+    "lodash": ">=4.17.19"
   }
 }
